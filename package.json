@@ -1,10 +1,14 @@
 {
   "dependencies": {
+    "axios": "^1.6.8",
+    "fluent-ffmpeg": "^2.1.2",
     "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "^1.23.0"
+    "whatsapp-web.js": "^1.23.0",
+    "yt-search": "^2.11.0",
+    "ytdl-core": "^4.11.5"
   },
   "type": "module",
-  "main":"main.js",
+  "main": "main.js",
   "scripts": {
     "start": "node ."
   }
