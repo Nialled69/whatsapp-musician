@@ -33,8 +33,19 @@ git clone https://github.com/Nialled69/whatsapp-musician.git
 ```cmd
 cd whatsapp_musician
 ```
+Run the below line to initiate a node project
+```cmd
+npm init
+```
 
-<h2>4. Running the Bot 🥸</h2>
+<h2>4. Downloading the Node Modules ☣️</h2>
+
+type in `cd` in the terminal. If the path ends with `\whatsapp_musician` , then run the below line - 
+```cmd
+npm i axios qrcode-terminal ytdl-core yt-search whatsapp-web.js 
+```
+
+<h2>5. Running the Bot 🥸</h2>
 
 Make sure that your ffmpeg path is set at `D:\ffmpeg\bin` . If not, open the `song_finder.js` , go to line no. 17 and update the FFmpeg path.
 After making sure of all the above factors, type in - 
@@ -42,6 +53,8 @@ After making sure of all the above factors, type in -
 ```cmd
 npm start
 ```
+
+Scan the QR code in the terminal from your mobile whatsapp and it will start working. Make sure that your current whatsapp version supports **Multi Device Beta**
 
 # Extra Features 🎃 
 ### Tag Everyone 🥊</h3>
