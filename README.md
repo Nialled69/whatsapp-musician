@@ -3,6 +3,10 @@
 
 Simply type in  `!play`  and then the name of the song you want to play . Example - `!play Humble by Kendrick Lamar`
 
+(or if you want to watch a music video) 
+
+Type in  `!stream`  and then the name of the music-video you want to play . Example - `!stream Fuji Opener by Skrillex`
+
 # How to use the Bot ? 🤖
 <h2>1. Download the Requirements first. ⚓</h2>
 
@@ -57,12 +61,19 @@ npm start
 Scan the QR code in the terminal from your mobile whatsapp and it will start working. Make sure that your current whatsapp version supports **Multi Device Beta**
 
 # Extra Features 🎃 
-### Tag Everyone 🥊</h3>
+## Tag Everyone 🥊</h3>
 
-Tag Everyone in the group chat with `!everyone` command . (Important when you need to announce something)
-### Get Memes ⛓️ </h3>
+Tag Everyone in the group chat with `!everyone` command . (Important when you need to announce something for everyone in the chat)
+## Get Memes ⛓️ </h3>
 
 Get unlimited memes with the command `!meme` , freshly scraped from the most popular communities on Reddit with the lastest Web-Scraping Technology . 
 
 This might take some time. If you want very fast responses , then reduce the delay by clicking on this [link](https://www.google.com/search?q=wifi&oq=wifi&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiPAjIHCAIQABiPAjIHCAMQABiPAjIGCAQQRRg80gEIMzI4N2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
 
+## Watch videos (Latest Feature) 📹 
+
+Watch any video from youtube (music videos are mostly preferrable) directly in your whatsapp chat. 
+
+Simply type in  `!stream`  and then the name of the music-video you want to play . Example - `!stream Enter Sandman by Metallica` and the video file wil be sent to the user.
+
+Note - This takes a huge time since video size may vary and this feature greatly depends on your internet speed and bandwidth. If you want to fix this issue , click in [here](https://www.google.com/search?q=wifi&oq=wifi&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiPAjIHCAIQABiPAjIHCAMQABiPAjIGCAQQRRg80gEIMzI4N2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
