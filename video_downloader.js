@@ -1,4 +1,5 @@
-
+// This file handles the logic to download videos and sent it to the user's chat. 
+// It takes huge time because, you can understand right ? If you got good internet speed with good bandwidth, then you're all set.
 
 import fs from 'fs';
 import ytdl from 'ytdl-core';
