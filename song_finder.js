@@ -7,7 +7,7 @@ import { spawn } from 'child_process';
 export const downloader = async (videoId,url) => {
     return new Promise((resolve, reject) => {
         try {
-            const downloadPath = `downloads/${videoId}.mp3`;
+            const downloadPath = `downloads/musics/${videoId}.mp3`;
 
             const moosic = ytdl(url, { filter: 'audioonly' }); //creating a Readable Stream of the requested Music 
             moosic.on("error", error => {
