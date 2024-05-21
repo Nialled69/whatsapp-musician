@@ -7,6 +7,7 @@ import qrcode from 'qrcode-terminal';
 import axios from 'axios';
 import ytsearch from 'yt-search';
 import { downloader } from './song_finder.js';
+import { videodownloader } from './video_downloader.js';
 const { Client, MessageMedia , LocalAuth } = pkg;
 
 //import text from './language';
@@ -16,6 +17,10 @@ const { Client, MessageMedia , LocalAuth } = pkg;
 
 if(!fs.existsSync('./Sessions')){ //Create a Sessions folder to keep track of the user-login so that re-login isn't necessary.
     fs.mkdirSync('Sessions');
+}
+
+if (!fs.existsSync('./downloads')) {
+  fs.mkdirSync('./downloads');
 }
 
 const client = new Client({
@@ -67,9 +72,9 @@ client.on('message_create', async (msg) => {
 
   else if((msg.body).startsWith("!play")){ // "!play <song name>" will download a song and sent it to the user.
       const requested_music = (msg.body).slice(5,);
-      const pushdir = './downloads';
+      const pushdir = './downloads/musics';
       if(!fs.existsSync(pushdir)){
-        fs.mkdirSync('downloads');
+        fs.mkdirSync(pushdir)
       }
       const song_cache = new Set();  //maintaining a Set to keep track of previously downloaded mp3 files to avoid re-download of the same file
       const files = fs.readdirSync(pushdir);
@@ -85,19 +90,33 @@ client.on('message_create', async (msg) => {
 
       if(song_cache.has(videoId)){ //sending the song is already downloaded
         console.log("Song found in local storage. Sending Now............") 
-        const media = MessageMedia.fromFilePath(`./downloads/${videoId}.mp3`);
+        const media = MessageMedia.fromFilePath(`./downloads/musics/${videoId}.mp3`);
         await client.sendMessage(msg.from, media);
       }
       else{
         try{
             await downloader(videoId,url) //download the song with the youtube video URL
             //console.log("hulla");
-            const media = MessageMedia.fromFilePath(`./downloads/${videoId}.mp3`);
+            const media = MessageMedia.fromFilePath(`./downloads/musics/${videoId}.mp3`);
             await client.sendMessage(msg.from, media);
             console.log("Audio file sent !");
         } catch (error) {
             console.error('Error:', error);
         }
+      }
+    }
+
+    else if((msg.body).startsWith("!stream")){
+      const requested_vid = (msg.body).slice(8,);
+      const videoss = await ytsearch(requested_vid);
+      const {videoId , url} = videoss.videos[0];
+      try{
+        await videodownloader(videoId,url)
+        const media = MessageMedia.fromFilePath(`./downloads/videos/${videoId}.mp4`);
+        await client.sendMessage(msg.from, media);
+        console.log("Video file sent !");
+      } catch (error) {
+        console.error('Error:', error);
       }
     }
 });
