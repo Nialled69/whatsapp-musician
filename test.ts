@@ -1,5 +1,7 @@
 // This is just a Test file to test modules. 
-// This doesn't contribute anything to the original project. Imagine opening this L-BOZO    XD    Couldn't be me for sure.
+// This doesn't contribute anything to the original project. Imagine opening this L-BOZO    
+// XD
+// Couldn't be me for sure.
 
 import fs from 'fs';
 import path from 'path';
@@ -7,7 +9,6 @@ import path from 'path';
 import ytdl from 'ytdl-core';
 import yts from 'yt-search';
 import {spawn} from 'child_process';
-import ffmpeg from 'fluent-ffmpeg';
 
 
 
@@ -114,79 +115,74 @@ try {
     console.error('Error:', error);
 }
 
-
-
-
-
 // Testing the video-logic to download videos from youtube in the locale directory for easy access
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        try {
+try {
 
-            //const vids = await yts("Yoasabi Idol");
-            const vids = {videos:[{videoId:2131232,url:"https://youtube.com/2131232"}]}
+    //const vids = await yts("Yoasabi Idol");
+    const vids = {videos:[{videoId:2131232,url:"https://youtube.com/2131232"}]}
 
-            const {videoId , url} = vids.videos[0];
+    const {videoId , url} = vids.videos[0];
 
-            const downloadPath = `downloads/videos/${videoId}.mp4`;
+    const downloadPath = `downloads/videos/${videoId}.mp4`;
 
-            const savepath = './downloads/videos';
+    const savepath = './downloads/videos';
 
-            if(!fs.existsSync(savepath)){
-                if(!fs.existsSync('./downloads')){fs.mkdirSync('downloads');}
-                fs.mkdirSync(savepath);
-            }
+    if(!fs.existsSync(savepath)){
+        if(!fs.existsSync('./downloads')){fs.mkdirSync('downloads');}
+        fs.mkdirSync(savepath);
+    }
 
-            const video = ytdl(url,{quality:18}); 
+    const video = ytdl(url,{quality:18}); 
 
-            video.on("error", error => {
-                console.error("Error downloading video:", error);
-                
-            });
+    video.on("error", error => {
+        console.error("Error downloading video:", error);
+        
+    });
 
-            const ffmpegPath = 'D:/ffmpeg/bin/ffmpeg.exe'; // ffmpeg file path . 
+    const ffmpegPath = 'D:/ffmpeg/bin/ffmpeg.exe'; // ffmpeg file path . 
 
-            const ffmpegArgs = [
-                '-i', '-',
-                '-c:v', 'copy', 
-                '-c:a', 'copy', 
-                '-f', 'mp4',
-                '-y', 
-                downloadPath
-            ];
+    const ffmpegArgs = [
+        '-i', '-',
+        '-c:v', 'copy', 
+        '-c:a', 'copy', 
+        '-f', 'mp4',
+        '-y', 
+        downloadPath
+    ];
 
-            const ffmpegProcess = spawn(ffmpegPath, ffmpegArgs);
+    const ffmpegProcess = spawn(ffmpegPath, ffmpegArgs);
 
-            const outputStream = fs.createWriteStream(downloadPath);
+    const outputStream = fs.createWriteStream(downloadPath);
 
-            ffmpegProcess.stderr.pipe(process.stderr);
+    ffmpegProcess.stderr.pipe(process.stderr);
 
-            ffmpegProcess.stdout.pipe(outputStream);
+    ffmpegProcess.stdout.pipe(outputStream);
 
-            video.pipe(ffmpegProcess.stdin);
+    video.pipe(ffmpegProcess.stdin);
 
-            ffmpegProcess.on('close', (code) => {
-                if (code === 0) {
-                    console.log(`Audio file saved successfully: ${downloadPath}`);
-                    
-                } else {
-                    console.error("Nigga , you're a failure");
-                }
-            });
-
-            ffmpegProcess.on('error', (error) => {
-                console.error('ffmpeg process error:', error);
-                
-            });
-
-            ffmpegProcess.on('exit', (code) => { 
-                if (code !== 0) {
-                    console.error(`ffmpeg process exited with code ${code}`);
-                }
-            });
+    ffmpegProcess.on('close', (code) => {
+        if (code === 0) {
+            console.log(`Audio file saved successfully: ${downloadPath}`);
             
-        } catch (error) {
-            console.error('Error:', error);
+        } else {
+            console.error("Nigga , you're a failure");
         }
+    });
 
+    ffmpegProcess.on('error', (error) => {
+        console.error('ffmpeg process error:', error);
+        
+    });
+
+    ffmpegProcess.on('exit', (code) => { 
+        if (code !== 0) {
+            console.error(`ffmpeg process exited with code ${code}`);
+        }
+    });
+    
+} catch (error) {
+    console.error('Error:', error);
+}
